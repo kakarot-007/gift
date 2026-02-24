@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Yadav Jii 💖</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#ffdde1,#ee9ca7,#a1c4fd);
+    color:#333;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.section{
+    display:none;
+    padding:60px 20px;
+    min-height:100vh;
+}
+
+.active{display:block;}
+
+h1,h2{color:#ff4e91;}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,#ff4e91,#6ec6ff);
+    color:white;
+    margin:15px;
+    cursor:pointer;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:hover{transform:scale(1.05);}
+
+.meter{
+    width:80%;
+    height:20px;
+    background:#ffd6e8;
+    margin:20px auto;
+    border-radius:20px;
+}
+
+.fill{
+    height:100%;
+    width:0%;
+    background:#ff4e91;
+    border-radius:20px;
+    transition:1s;
+}
+
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:20px;
+    animation:float 5s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-110vh);}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="section active" id="page1">
+    <h1>🎂 Happy Birthday Yadav Jii 🎂</h1>
+    <p>Your legendary journey starts now 💖</p>
+    <button onclick="nextPage(2)">Start →</button>
+</div>
+
+<!-- PAGE 2: CRUSH PAGE -->
+<div class="section" id="page2">
+    <h2>💘 Lily From Tripura 💘</h2>
+
+    <p>
+    ❤️ When it comes to Lily… ❤️ <br><br>
+    The strong Yadav Jii becomes soft. <br>
+    His attitude changes. <br>
+    His smile becomes brighter. <br>
+    And maybe somewhere, destiny is already connecting two hearts 💕
+    </p>
+
+    <div class="meter">
+        <div class="fill" id="loveFill"></div>
+    </div>
+
+    <button onclick="increaseLove()">Increase Love ❤️</button>
+    <br>
+    <button onclick="nextPage(3)">Continue →</button>
+</div>
+
+<!-- PAGE 3: MEMORIES & FUTURE -->
+<div class="section" id="page3">
+    <h2>🌙 Memories & Future 🌙</h2>
+
+    <p style="max-width:600px;margin:auto;line-height:1.7;">
+    From random school laughs to serious life talks, we’ve built memories that can never fade. 
+    Late-night conversations about dreams, success, and the future we imagine. 
+    One day we’ll look back at these moments and smile, knowing we started from nothing and built everything. 
+    Road trips, achievements, celebrating wins, supporting each other during losses — that’s the plan. 
+    No matter where life takes us, distance will never break what we have. 
+    Brotherhood isn’t about time; it’s about loyalty. 
+    And I know, years later, we’ll still be laughing the same way we do today.
+    </p>
+
+    <button onclick="nextPage(4)">Continue →</button>
+</div>
+
+<!-- PAGE 4: BROTHERHOOD -->
+<div class="section" id="page4">
+    <h2>🔥 Brotherhood Forever 🔥</h2>
+
+    <p>
+    We rise together. <br>
+    We grow together. <br>
+    We protect each other. <br>
+    No jealousy. No fake vibes. <br>
+    Just pure loyalty and respect. 💪
+    </p>
+
+    <button onclick="nextPage(5)">Final →</button>
+</div>
+
+<!-- PAGE 5: FINAL -->
+<div class="section" id="page5">
+    <h1>💖 Legendary Yadav Jii 💖</h1>
+    <p>
+    Stay ambitious. <br>
+    Stay strong. <br>
+    And maybe one day… <br>
+    Lily smiles because of you 💕
+    </p>
+
+    <button onclick="celebrate()">Celebrate 🎊</button>
+</div>
+
+<script>
+function nextPage(id){
+    document.querySelectorAll(".section").forEach(sec=>sec.classList.remove("active"));
+    document.getElementById("page"+id).classList.add("active");
+}
+
+let love=0;
+let heartInterval;
+
+function increaseLove(){
+    if(love<100){
+        love+=20;
+        document.getElementById("loveFill").style.width=love+"%";
+    }
+
+    if(love>=100){
+        startHearts();
+    }
+}
+
+function startHearts(){
+    if(heartInterval) return;
+    heartInterval=setInterval(()=>{
+        let heart=document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML="💖";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.animationDuration=(Math.random()*3+3)+"s";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),5000);
+    },300);
+}
+
+function celebrate(){
+    confetti({
+        particleCount:400,
+        spread:180,
+        origin:{y:0.6}
+    });
+}
+</script>
+
+</body>
+</html>
